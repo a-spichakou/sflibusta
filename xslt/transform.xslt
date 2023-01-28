@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:l="http://www.w3.org/1999/xlink"
-                xmlns:f="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:xls="http://www.w3.org/1999/XSL/Transform">
+                xmlns:f="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:xls="http://www.w3.org/1999/XSL/Transform" >
 
     <xls:param name="archivename"/>
     <xls:param name="filename"/>
-    <xsl:template match="/f:FictionBook">
+    <xsl:template match="/f:FictionBook">        
         <add>
             <doc>
                 <xsl:for-each select="f:description">
@@ -78,8 +78,7 @@
                         <xsl:value-of select="f:document-info/f:src-ocr"/>
                     </field>
                     <field name="id">
-                        <xsl:value-of select="$archivename"/>/<xsl:value-of select="$filename"/>/<xsl:value-of
-                            select="f:document-info/f:id"/>
+                        <xsl:value-of select="$archivename"/>/<xsl:value-of select="$filename"/>/<xsl:value-of select="f:document-info/f:id"/>
                     </field>
                     <field name="document-id">
                         <xsl:value-of select="f:document-info/f:id"/>
@@ -122,6 +121,7 @@
                         <xsl:value-of select="normalize-space(.)"/>
                     </field>
                 </xsl:for-each>
+
                 <field name="content">
                     <xsl:for-each select="f:description">
                         <xsl:for-each select="f:title-info/f:genre">
