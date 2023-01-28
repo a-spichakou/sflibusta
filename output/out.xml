@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<add xmlns:l="http://www.w3.org/1999/xlink" xmlns:f="http://www.gribuser.ru/xml/fictionbook/2.0">
+    <doc>
+        <field name="genre">sf</field>
+        <field name="archivename">archive_1</field>
+        <field name="filename">183510.xml</field>
+        <field name="date">1964</field>
+        <field name="author-first-name">Роджер</field>
+        <field name="author-middle-name"/>
+        <field name="author-last-name">Желязны</field>
+        <field name="author-id"/>
+        <field name="book-title">Глаз ночи</field>
+        <field name="annotation"/>
+        <field name="lang">ru</field>
+        <field name="src-lang">en</field>
+        <field name="translator-first-name">С.</field>
+        <field name="translator-last-name">Сухинов</field>
+        <field name="sequence"/>
+        <field name="document-first-name"/>
+        <field name="document-middle-name"/>
+        <field name="document-last-name"/>
+        <field name="document-program-used">LibRusEc kit, AlReader2</field>
+        <field name="document-date">2010-03-05</field>
+        <field name="document-datetime">05.03.2010</field>
+        <field name="document-src-ocr"/>
+        <field name="id">archive_1/183510.xml/20100305180301</field>
+        <field name="document-id">20100305180301</field>
+        <field name="document-version">1.1</field>
+        <field name="document-history">v. 1.0 - Неизвестный - создание файла</field>
+        <field name="document-history">v. 1.1 - DVS1 (4PDA) доп. правка, доп. верстка</field>
+        <field name="document-author-nickname">DVS1 (4PDA)</field>
+        <field name="document-author-email">lib_at_rus.ec</field>
+        <field name="document-author-home-page"/>
+        <field name="publish-info-book-name"/>
+        <field name="publish-info-publisher"/>
+        <field name="publish-info-city"/>
+        <field name="publish-info-year"/>
+        <field name="publish-info-isbn"/>
+        <field name="title">Роджер Желязны</field>
+        <field name="title">Глаз ночи</field>
+    </doc>
+</add>
