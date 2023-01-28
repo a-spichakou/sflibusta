@@ -121,6 +121,49 @@
                         <xsl:value-of select="normalize-space(.)"/>
                     </field>
                 </xsl:for-each>
+
+                <field name="content">
+                    <xsl:for-each select="f:description">
+                        <xsl:for-each select="f:title-info/f:genre">
+                            <xsl:value-of select="."/>
+                        </xsl:for-each>
+                        |<xsl:value-of select="f:title-info/f:date"/>|<xsl:value-of
+                            select="f:title-info/f:author/f:first-name"/>|<xsl:value-of
+                            select="f:title-info/f:author/f:middle-name"/>|<xsl:value-of
+                            select="f:title-info/f:author/f:last-name"/>|<xsl:value-of
+                            select=" f:title-info/f:author/f:id"/>|<xsl:value-of select="f:title-info/f:book-title"/>|
+                        <xsl:value-of
+                                select="translate(normalize-space(f:title-info/f:annotation), '&#xA;', '')"/>|<xsl:value-of
+                            select="f:title-info/f:lang"/>|<xsl:value-of select="f:title-info/f:src-lang"/>|
+                        <xsl:value-of select="f:title-info/f:translator/f:first-name"/>|<xsl:value-of
+                            select="f:title-info/f:translator/f:last-name"/>|<xsl:value-of
+                            select="f:title-info/f:sequence/@name"/>|<xsl:value-of
+                            select="f:document-info/f:author/f:first-name"/>|<xsl:value-of
+                            select="f:document-info/f:author/f:middle-name"/>|<xsl:value-of
+                            select="f:document-info/f:author/f:last-name"/>|<xsl:value-of
+                            select="f:document-info/f:program-used"/>|<xsl:value-of
+                            select="f:document-info/f:date/@value"/>|<xsl:value-of
+                            select="f:document-info/f:date"/>|<xsl:value-of
+                            select="f:document-info/f:src-ocr"/>|<xsl:value-of select="$archivename"/>/<xsl:value-of
+                            select="$filename"/>/<xsl:value-of
+                            select="f:document-info/f:id"/>|<xsl:value-of select="f:document-info/f:id"/>|<xsl:value-of
+                            select="f:document-info/f:version"/>|
+                        <xsl:for-each select="f:document-info/f:history/f:p">
+                            <xsl:value-of select="normalize-space(.)"/>
+                        </xsl:for-each>
+                        <xsl:value-of select="f:document-info/f:author/f:nickname"/>|<xsl:value-of
+                            select="f:document-info/f:author/f:email"/>|<xsl:value-of
+                            select="f:document-info/f:author/f:home-page"/>|<xsl:value-of
+                            select="f:publish-info/f:book-name"/>|<xsl:value-of
+                            select="f:publish-info/f:publisher"/>|<xsl:value-of
+                            select="f:publish-info/f:city"/>|<xsl:value-of select="f:publish-info/f:year"/>|<xsl:value-of
+                            select="f:publish-info/f:isbn"/>
+                    </xsl:for-each>
+                    |
+                    <xsl:for-each select="f:body/f:title/f:p">
+                        <xsl:value-of select="normalize-space(.)"/>
+                    </xsl:for-each>
+                </field>
             </doc>
         </add>
     </xsl:template>
