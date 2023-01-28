@@ -38,5 +38,15 @@
         <field name="publish-info-isbn"/>
         <field name="title">Роджер Желязны</field>
         <field name="title">Глаз ночи</field>
+        <field name="content">sf
+            |1964|Роджер||Желязны||Глаз ночи|
+            |ru|en|
+            С.|Сухинов|||||LibRusEc kit,
+            AlReader2|2010-03-05|05.03.2010||archive_1/183510.xml/20100305180301|20100305180301|1.1|
+            v. 1.0 - Неизвестный - создание файлаv. 1.1 - DVS1 (4PDA) доп. правка, доп. версткаDVS1
+            (4PDA)|lib_at_rus.ec||||||
+            |
+            Роджер ЖелязныГлаз ночи
+        </field>
     </doc>
 </add>

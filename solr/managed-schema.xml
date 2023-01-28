@@ -472,6 +472,7 @@
   <field name="document-program-used" type="text_general"/>
   <field name="document-src-ocr" type="text_general"/>
   <field name="document-version" type="text_general"/>
+  <field name="content" type="text_general"/>
   <field name="filename" type="text_general"/>
   <field name="genre" type="text_general"/>
   <field name="id" type="string" multiValued="false" indexed="true" required="true" stored="true"/>
