@@ -3,9 +3,9 @@
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:l="http://www.w3.org/1999/xlink"
                 xmlns:f="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:xls="http://www.w3.org/1999/XSL/Transform" >
 
-    <xsl:template match="/f:FictionBook">
-        <xls:param name="archivename"/>
-        <xls:param name="filename"/>
+    <xls:param name="archivename"/>
+    <xls:param name="filename"/>
+    <xsl:template match="/f:FictionBook">        
         <add>
             <doc>
                 <xsl:for-each select="f:description">
@@ -15,7 +15,7 @@
                         </field>
                     </xsl:for-each>
                     <field name="archivename">
-                        <xsl:value-of select="$archivename"/>
+                        <xsl:copy-of select="$archivename"/>
                     </field>
                     <field name="filename">
                         <xsl:value-of select="$filename"/>
