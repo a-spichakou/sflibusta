@@ -1,6 +1,7 @@
 #!/bin/bash
 archivedir="/media/usb1/fb2.Flibusta.Net"
 maildir="/home/fullgrim/mail/new"
+scriptdir="/home/fullgrim/work/sflibusta/script/"
 solrurl="http://192.168.88.233:8983/solr/flibusta/select"
 tempdir="/tmp/sflibusta"
 
@@ -39,7 +40,7 @@ do
 		searchResp=`curl -s $solrurl \
 		--data-urlencode "indent=true" \
 		--data-urlencode "q.op=OR" \
-		--data-urlencode "q=id:$docid" \
+		--data-urlencode "q=id:\"$docid\"" \
 		--data-urlencode "rows=1"`
 
 		filePath=`echo $searchResp | jq -r '.response.docs[] | "\(.archivename[0])/\(.filename[0])"'`
@@ -61,7 +62,7 @@ do
 			rm $tempdir/*
 		done
 	else
-		./search.sh $sender "RE: $subject" "$subject" > $tempdir/body.html
+		$scriptdir/search.sh $sender "RE: $subject" "$subject" > $tempdir/body.html
 		ssmtp -t < $tempdir/body.html
 		rm $tempdir/*
 	fi
