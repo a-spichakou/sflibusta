@@ -34,7 +34,7 @@ do
 
 	if [ ${subject:0:3} = "GET" ]
 	then
-		docid=${subject:4}
+		docid=`echo ${subject:4} | base64 --decode`
 		echo $docid
 
 		searchResp=`curl -s $solrurl \

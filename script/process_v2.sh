@@ -1,6 +1,6 @@
 #!/bin/bash	
-archivepath=/media/usb1/fb2.Flibusta.Net
-outputpath=/media/usb1/work/test/xsltoutput1
+archivepath=$1
+outputpath=$2
 
 for item in $archivepath/*.zip
 do

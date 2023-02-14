@@ -1,4 +1,5 @@
 #!/bin/bash
+solrurl="http://192.168.88.233:8983/solr/flibusta/select"
 
 echo "to: $1"
 echo "Subject: $2"
@@ -16,14 +17,14 @@ echo "
 #query=`echo -n "$3" | jq -Rsa .`
 #echo "$query"
 
-curl -s "http://192.168.88.233:8983/solr/flibusta/select" \
+curl -s $solrurl \
 --data-urlencode "indent=true" \
 --data-urlencode "q.op=OR" \
 --data-urlencode "q=content:\"$3\"" \
 --data-urlencode "rows=100" \
 | jq -r '.response.docs[] | "
 <tr> 
-	<td><a href=\"mailto:sflibustarobot@int.pl?subject=GET:\(.id)\">\(."book-title"[0])</a></td>
+	<td><a href=\"mailto:sflibustarobot@int.pl?subject=GET:\(.id | @base64)\">\(."book-title"[0])</a></td>
 	<td>\(."author-first-name"[0])\t\(."author-last-name"[0])</td>
 	<td>\(."annotation"[0] // "-")</td>
 </tr>"'
