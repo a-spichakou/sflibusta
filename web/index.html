@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flibusta Search SPA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 2em;
+            background: #f9f9f9;
+        }
+        .search-container {
+            max-width: 600px;
+            margin: 2em auto;
+            background: #fff;
+            padding: 1.5em;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .search-container input {
+            width: calc(100% - 90px);
+            padding: 0.6em;
+            margin-right: 0.5em;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .search-container button {
+            padding: 0.6em 1em;
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .search-container button:hover {
+            background: #0056b3;
+        }
+        .results {
+            margin-top: 2em;
+        }
+        .result-item {
+            padding: 1em;
+            margin-bottom: 1em;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .result-item h3 {
+            margin: 0 0 0.5em;
+        }
+        .result-item p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="search-container">
+    <h1>Flibusta Local Index</h1>
+    <input id="search-input" type="text" placeholder="Enter search query" onkeyup="performSearch()" />
+    <div id="stats" class="results"></div>
+    <div id="results" class="results"></div>
+</div>
+
+<script>
+    const SOLR_BASE_URL = "http://192.168.1.42:8080/s";
+    const SOLR_CORE_NAME = "flibusta"; // Replace with your Solr core name
+
+    async function performSearch() {
+        const query = document.getElementById("search-input").value;
+        if (!query.trim()) {
+            //alert("Please enter a search query.");
+            return;
+        }
+
+        const searchURL = `${SOLR_BASE_URL}/${SOLR_CORE_NAME}/select?wt=json&q=content:${encodeURIComponent(query)}`;
+
+        try {
+            const response = await fetch(searchURL);
+            if (!response.ok) {
+                throw new Error(`Error: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            displayResults(data.response.docs);
+            displaytStats(data.response);
+        } catch (error) {
+            console.error("Search failed:", error);
+            alert("Failed to fetch search results. Check Solr connection.");
+        }
+    }
+
+    function displaytStats(stats){
+        const statsContainer = document.getElementById("stats");
+        statsContainer.innerHTML = `<p>Total results: ${stats.numFound}</p>`;
+    }
+
+    function displayResults(docs) {
+        const resultsContainer = document.getElementById("results");
+        resultsContainer.innerHTML = "";
+
+        if (!docs || docs.length === 0) {
+            resultsContainer.innerHTML = "<p>No results found.</p>";
+            return;
+        }
+
+        docs.forEach((doc) => {
+            const resultItem = document.createElement("div");
+            resultItem.className = "result-item";
+
+            const authorFirstName = doc['author-first-name'] || "No Title";
+            const authorLastName = doc['author-last-name'] || "-"
+            const bookTitle = doc['book-title'] || "-"
+            const content = doc.annotation || "No content summary available.";
+            const id= btoa(doc.id)
+
+            resultItem.innerHTML = `
+          <h3>${authorFirstName} ${authorLastName}</h3>
+          <h4><a href="mailto:sflibustarobot@int.pl?subject=GET:${id}">${bookTitle}</a></h4>
+          <p>${content}</p>
+        `;
+            resultsContainer.appendChild(resultItem);
+        });
+    }
+</script>
+</body>
+</html>
