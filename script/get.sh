@@ -1,8 +1,8 @@
 #!/bin/bash
-archivedir="/media/usb1/fb2.Flibusta.Net"
-maildir="/home/fullgrim/mail/new"
-scriptdir="/home/fullgrim/work/sflibusta/script/"
-solrurl="http://192.168.88.233:8983/solr/flibusta/select"
+archivedir="/media/homelib/fb2.Flibusta.Net"
+maildir="/home/inferno/mail/new"
+scriptdir="/home/inferno/work/sflibusta/script/"
+solrurl="http://localhost:8983/solr/flibusta/select"
 tempdir="/tmp/sflibusta"
 
 if [[ ! -e $tempdir ]]; then

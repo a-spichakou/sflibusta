@@ -1,5 +1,5 @@
 #!/bin/bash
-solrurl="http://192.168.88.233:8983/solr/flibusta/select"
+solrurl="http://localhost:8983/solr/flibusta/select"
 
 echo "to: $1"
 echo "Subject: $2"

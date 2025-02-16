@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+
+  initializer:
+    image: alpine
+    container_name: solr-initializer
+    restart: "no"
+    entrypoint: |
+      /bin/sh -c "chown 8983:8983 /solr"
+    volumes:
+      - ./data/solr:/solr
+
+  solr:
+    depends_on:
+      - initializer
+    image: solr:latest
+    container_name: solr
+    ports:
+      - "8983:8983"
+    volumes:
+      - ./data/solr:/var/solr/data
+    restart: unless-stopped

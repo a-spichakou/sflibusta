@@ -1,5 +1,5 @@
 #!/bin/bash	
-for item in /media/usb1/fb2.Flibusta.Net/*.zip
+for item in /media/homelib/fb2.Flibusta.Net/*.zip
 do
   echo $(basename ${item})
   fuse-zip ${item} ./mount
