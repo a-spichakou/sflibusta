@@ -47,6 +47,16 @@ services:
     ports:
       - 4040:4040
 
+  pservice:
+    build: .
+    container_name: pservice
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./archives:/archives  # Mount for ZIP archives
+    environment:
+      - PYTHONUNBUFFERED=1
+
 networks:
   inferno_net:
     driver: bridge

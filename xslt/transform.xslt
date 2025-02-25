@@ -33,7 +33,7 @@
                         <xsl:value-of select="f:title-info/f:author/f:last-name"/>
                     </field>
                     <field name="author-id">
-                        <xsl:value-of select=" f:title-info/f:author/f:id"/>
+                        <xsl:value-of select="f:title-info/f:author/f:id"/>
                     </field>
                     <field name="book-title">
                         <xsl:value-of select="f:title-info/f:book-title"/>
@@ -121,6 +121,15 @@
                         <xsl:value-of select="normalize-space(.)"/>
                     </field>
                 </xsl:for-each>
+
+                <!--xsl:for-each select="f:binary">
+                    <field name="cover">
+                       <xsl:value-of select="normalize-space(.)"/>
+                   </field>
+                    <field name="cover-content-type">
+                        <xsl:value-of select="@content-type"/>
+                    </field>
+                </xsl:for-each-->
 
                 <field name="content">
                     <xsl:for-each select="f:description">
