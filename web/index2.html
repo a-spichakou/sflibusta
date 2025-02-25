@@ -75,12 +75,59 @@
         .text-column {
             flex: 1; /* Adjusts width for equal proportion */
         }
+        /* Basic spinner styles */
+        .spinner {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 8px solid #f3f3f3; /* Light gray border */
+            border-top: 8px solid #3498db; /* Blue border for animation effect */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite; /* Spinning animation */
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Background overlay when spinner is active */
+        .spinner-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            z-index: 999; /* Place the overlay above everything */
+        }
+
+        .spinner-overlay.active {
+            display: block; /* Show overlay and spinner */
+        }
+        .spinner.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
+<!-- Spinner Container -->
+<div class="spinner-overlay">
+    <div class="spinner"></div>
+</div>
+
 <div class="search-container">
-    <h1>Flibusta Local Index</h1>
-    <input id="search-input" type="text" placeholder="Enter search query" onkeydown="performSearch()" />
+    <h3><a href="index.html">Flibusta</a> | Flibusta with Covers</h3>
+    <input id="search-input" type="text" placeholder="Enter search query and hit ENTER" onkeydown="performSearch()" />
     <div id="stats" class="results"></div>
     <div id="results" class="results"></div>
 </div>
@@ -94,6 +141,10 @@
         if (event.key != "Enter") {
             return;
         }
+
+        // Show the spinner
+        document.querySelector('.spinner-overlay').classList.add('active');
+
         const query = document.getElementById("search-input").value;
         if (!query.trim()) {
             //alert("Please enter a search query.");
@@ -114,6 +165,9 @@
         } catch (error) {
             console.error("Search failed:", error);
             alert("Failed to fetch search results. Check Solr connection.");
+        } finally {
+            // Hide the spinner
+            document.querySelector('.spinner-overlay').classList.remove('active');
         }
     }
 
